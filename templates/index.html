@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <script src="{{ url_for('static', filename='js/code.js') }}"></script>
+    </head>
+    <body>
+        <form id="form" method="POST" class="form-contact">
+            <section class="form-contains">
+                <h1>Email sender</h1>
+                <p><input class="input" type="text" placeholder="Email" name="email" value="" required>
+                <p><input class="input" type="text" placeholder="Subject" name="subject" value="" required>
+                <p><textarea class="input" name="message" placeholder="Message" rows=7 cols=40></textarea>
+                <p><input class="submit_button" type="submit" value="Submit">
+            </section>
+        </form>
+    </body>
+</html>

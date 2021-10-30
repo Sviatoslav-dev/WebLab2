@@ -1,0 +1,10 @@
+{
+    "extends": ["metarhia"],
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "max-len": ["error", { "code": 200 }]
+    }
+}
+
