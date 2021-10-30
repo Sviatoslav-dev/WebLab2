@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         message: form.elements['message'].value,
       };
 
-      form.classList.add('_sending');
+      form.classList.add('sending');
       fetch('/contact', {
         method: 'POST',
         credentials: 'include',
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'content-type': 'application/json',
         }),
       }).then(() => {
-        form.classList.remove('_sending');
+        form.classList.remove('sending');
         form.reset();
       });
     } else {
@@ -35,11 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validation(form) {
-    return String(form.elements['subject'].value).length > 3 && validateEmail(form.elements['email'].value);
+    return (
+      String(form.elements['subject'].value).length > 3 &&
+      validateEmail(form.elements['email'].value)
+    );
   }
 
   function validateEmail(email) {
-    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    const re =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     return re.test(String(email).toLowerCase());
   }
 });

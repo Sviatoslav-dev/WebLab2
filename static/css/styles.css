@@ -1,76 +1,79 @@
-:root{
-    --silver-color: #bdc3c7;
-    --eclipse-color: rgb(51, 51, 51, 0.8);
-    --midnigth_blue-color: #2c3e50;
-    --clouds-color: #ecf0f1;
-    --nephiritis-color: #27ae60;
-    --shadow-color: rgba(0,0,0,0.3);
+:root {
+  --silver-color: #bdc3c7;
+  --eclipse-color: rgb(51 51 51 / 80%);
+  --midnigth-blue-color: #2c3e50;
+  --clouds-color: #ecf0f1;
+  --nephiritis-color: #27ae60;
+  --shadow-color: rgb(0 0 0 / 30%);
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    border: none;
-    font-size: 1.5em;
-    width: 100vw;
-    background-color: var(--silver-color);
+body {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 1.5em;
+  width: 100vw;
+  background-color: var(--silver-color);
 }
 
-.form-contact{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    align-content: center; 
-    justify-content: center; 
+.form-contact {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
-.form-contact::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--eclipse-color) url('../images/giphy.gif') center / 50px no-repeat;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease 0s;
+.form-contact::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    var(--eclipse-color) url("../images/giphy.gif") center / 50px
+    no-repeat;
+  opacity: 0%;
+  visibility: hidden;
+  transition: all 0.5s ease 0s;
 }
 
-.form-contact._sending::after{
-    opacity: 1;
-    visibility: visible;
+.form-contact.sending::after {
+  opacity: 100%;
+  visibility: visible;
 }
 
-.form-contains{
-    position: absolute;
-    vertical-align: middle;
-    text-align: center;
+.form-contains {
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
 }
 
-h1{
-    font-size: 40pt;
-    width: 100%;
-    color: var(--midnigth_blue-color);
+h1 {
+  font-size: 40pt;
+  width: 100%;
+  color: var(--midnigth-blue-color);
 }
 
-.input{
-    width: 100%;
-    background-color: var(--clouds-color);
+.input {
+  width: 100%;
+  background-color: var(--clouds-color);
 }
 
-.submit_button{
-    position: absolute;
-    right: 0;
-    width: 40%;
-    height: 10%;
-    background-color: var(--nephiritis-color);
-} 
+.submit-button {
+  position: absolute;
+  right: 0;
+  width: 40%;
+  height: 10%;
+  background-color: var(--nephiritis-color);
+}
 
-.input, .submit_button{
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 0 10px var(--shadow-color);
+.input,
+.submit-button {
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--shadow-color);
 }
