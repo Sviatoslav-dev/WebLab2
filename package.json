@@ -34,7 +34,9 @@
       "git add"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "eslint-plugin-import": "^2.25.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sviatoslav-dev/WebLab2.git"
