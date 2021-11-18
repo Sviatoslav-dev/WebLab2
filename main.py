@@ -1,8 +1,8 @@
+import os
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-import os
 from sanitizer import sanitize_dict
 
 app = Flask(__name__)
@@ -40,9 +40,8 @@ def contact():
             mail.send(msg)
             res = jsonify({"result": "success"})
             return make_response(res, 200)
-        else:
-            res = jsonify({"result": "error"})
-            return make_response(res, 400)
+        res = jsonify({"result": "error"})
+        return make_response(res, 400)
     except Exception:
         res = jsonify({"result": "error"})
         return make_response(res, 400)
