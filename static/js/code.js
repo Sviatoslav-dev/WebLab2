@@ -8,33 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     if (validation(form)) {
-      var formData = new FormData(form);
+      const formData = new FormData(form);
 
       const entry = {};
 
-      for (var key of formData.keys()) {
-        entry[key] = formData.get(key)
+      for (const key of formData.keys()) {
+        entry[key] = formData.get(key);
       }
 
       form.classList.add('sending');
-      let res = fetch('/contact', {
+      fetch('/contact', {
         method: 'POST',
         body: JSON.stringify(entry),
         cache: 'no-cache',
         headers: new Headers({
           'content-type': 'application/json',
         }),
-      }).then(function(response) {
+      }).then(response => {
         form.classList.remove('sending');
-        if (response.status == 200){
-          return Promise.resolve(response)
+        if (response.status === 200) {
+          return Promise.resolve(response);
         } else {
-          return Promise.reject(new Error(response.statusText))
+          return Promise.reject(new Error(response.statusText));
         }
-      }).then(function(response) {
+      }).then(() => {
         form.reset();
         toast('Message sent successfully');
-      }).catch(function(error){
+      }).catch(error => {
         toast(error, 'red');
       });
     } else {
@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return re.test(String(email).toLowerCase());
   }
 
-  function toast(text, color='#333') {
-    var snackbar = document.getElementById("snackbar");
-    snackbar.className = "show";
+  function toast(text, color = '#333') {
+    const snackbar = document.getElementById('snackbar');
+    snackbar.className = 'show';
     snackbar.innerText = text;
     snackbar.style.backgroundColor = color;
-    setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+    setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 });

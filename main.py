@@ -29,7 +29,7 @@ def index():
 
 
 @app.route('/contact', methods=["POST"])
-@limiter.limit("1 per second")
+@limiter.limit("1 per minute")
 def contact():
     req = request.get_json()
     try:
@@ -37,7 +37,7 @@ def contact():
             msg = Message("Subject", sender="slaviktkachuk11gmail.com", recipients=[req['email']])
             msg.body = req['message']
             msg.subject = req['subject']
-            # mail.send(msg)
+            mail.send(msg)
             res = jsonify({"result": "success"})
             return make_response(res, 200)
         else:
