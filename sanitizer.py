@@ -2,7 +2,7 @@ import re
 
 
 def special_match(strg):
-    search = re.compile(r'[^a-z0-9.A-Z@,\-()!?+/\'\" ]').search
+    search = re.compile(r'[^a-z0-9.A-Zа-яА-ЯіІыЫ@,\-()!?+/\'\" \n]').search
     return not bool(search(strg))
 
 

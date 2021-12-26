@@ -29,7 +29,7 @@ def index():
 
 
 @app.route('/contact', methods=["POST"])
-@limiter.limit("1 per minute")
+@limiter.limit("10 per minute")
 def contact():
     req = request.get_json()
     try:
