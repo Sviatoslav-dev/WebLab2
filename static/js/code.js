@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     if (validation(form.elements)) {
-      var form_elements = form.elements
-      var entry = {};
+      const formElements = form.elements;
+      const entry = {};
 
-      for (var el in form_elements) {
-        entry[el] = form_elements[el].value;
+      for (const el in formElements) {
+        entry[el] = formElements[el].value;
       }
 
       form.classList.add('sending');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(error => {
           toast(error, false);
         });
-      } catch (e){
+      } catch (e) {
         toast(e.message(), false);
       }
     } else {
@@ -52,22 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
-  const email_re =
+  const emailRe =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
   function validateEmail(email) {
-    return email_re.test(String(email).toLowerCase());
+    return emailRe.test(String(email).toLowerCase());
   }
 
-  function setCssVar(name, value){
-    document.documentElement.style.setProperty(name, value)
+  function setCssVar(name, value) {
+    document.documentElement.style.setProperty(name, value);
   }
 
   function toast(text, success = true) {
-    if (success){
-      setCssVar("--snakebar-background-color", "#333")
+    if (success) {
+      setCssVar('--snakebar-background-color', '#333');
     } else {
-      setCssVar("--snakebar-background-color", "red")
+      setCssVar('--snakebar-background-color', 'red');
     }
     snackbar.className = 'show';
     snackbar.innerText = text;
