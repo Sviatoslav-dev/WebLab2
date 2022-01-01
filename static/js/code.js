@@ -17,30 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       form.classList.add('sending');
-      try {
-        fetch('/contact', {
-          method: 'POST',
-          body: JSON.stringify(entry),
-          cache: 'no-cache',
-          headers: new Headers({
-            'content-type': 'application/json',
-          }),
-        }).then(response => {
-          form.classList.remove('sending');
-          if (response.status === 200) {
-            return Promise.resolve(response);
-          } else {
-            return Promise.reject(new Error(response.statusText));
-          }
-        }).then(() => {
-          form.reset();
-          toast('Message sent successfully');
-        }).catch(error => {
-          toast(error, false);
-        });
-      } catch (e) {
-        toast(e.message(), false);
-      }
+      fetch('/contact', {
+        method: 'POST',
+        body: JSON.stringify(entry),
+        cache: 'no-cache',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+      }).then(response => {
+        form.classList.remove('sending');
+        if (response.status === 200) {
+          return Promise.resolve(response);
+        } else {
+          return Promise.reject(new Error(response.statusText));
+        }
+      }).then(() => {
+        form.reset();
+        toast('Message sent successfully');
+      }).catch(error => {
+        form.classList.remove('sending');
+        toast(error, false);
+      });
     } else {
       toast('Wrong input', false);
     }
