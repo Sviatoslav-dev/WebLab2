@@ -1,10 +1,13 @@
 :root {
-  --silver-color: #bdc3c7;
+  --body-background-color: #7bed9f;
   --eclipse-color: rgb(51 51 51 / 80%);
-  --midnigth-blue-color: #2c3e50;
-  --clouds-color: #ecf0f1;
-  --nephiritis-color: #27ae60;
+  --h1-text-color: #70a1ff;
+  --input-background-color: #eccc68;
+  --submit-button-background-color: #5352ed;
   --shadow-color: rgb(0 0 0 / 30%);
+  --snakebar-background-color: #333;
+  --snackbar-color: #fff;
+  --snackbar-text: "";
 }
 
 body {
@@ -13,7 +16,7 @@ body {
   border: none;
   font-size: 1.5em;
   width: 100vw;
-  background-color: var(--silver-color);
+  background-color: var(--body-background-color);
 }
 
 .form-contact {
@@ -55,12 +58,12 @@ body {
 h1 {
   font-size: 40pt;
   width: 100%;
-  color: var(--midnigth-blue-color);
+  color: var(--h1-text-color);
 }
 
 .input {
   width: 100%;
-  background-color: var(--clouds-color);
+  background-color: var(--input-background-color);
 }
 
 .submit-button {
@@ -68,7 +71,7 @@ h1 {
   right: 0;
   width: 40%;
   height: 10%;
-  background-color: var(--nephiritis-color);
+  background-color: var(--submit-button-background-color);
 }
 
 .input,
@@ -82,8 +85,8 @@ h1 {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--snakebar-background-color);
+  color: var(--snackbar-color);
   text-align: center;
   border-radius: 2px;
   padding: 16px;

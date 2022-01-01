@@ -2,63 +2,75 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
+  const snackbar = document.getElementById('snackbar');
   form.addEventListener('submit', SubmitEntry);
 
   async function SubmitEntry(e) {
     e.preventDefault();
 
-    if (validation(form)) {
-      const formData = new FormData(form);
+    if (validation(form.elements)) {
+      var form_elements = form.elements
+      var entry = {};
 
-      const entry = {};
-
-      for (const key of formData.keys()) {
-        entry[key] = formData.get(key);
+      for (var el in form_elements) {
+        entry[el] = form_elements[el].value;
       }
 
       form.classList.add('sending');
-      fetch('/contact', {
-        method: 'POST',
-        body: JSON.stringify(entry),
-        cache: 'no-cache',
-        headers: new Headers({
-          'content-type': 'application/json',
-        }),
-      }).then(response => {
-        form.classList.remove('sending');
-        if (response.status === 200) {
-          return Promise.resolve(response);
-        } else {
-          return Promise.reject(new Error(response.statusText));
-        }
-      }).then(() => {
-        form.reset();
-        toast('Message sent successfully');
-      }).catch(error => {
-        toast(error, 'red');
-      });
+      try {
+        fetch('/contact', {
+          method: 'POST',
+          body: JSON.stringify(entry),
+          cache: 'no-cache',
+          headers: new Headers({
+            'content-type': 'application/json',
+          }),
+        }).then(response => {
+          form.classList.remove('sending');
+          if (response.status === 200) {
+            return Promise.resolve(response);
+          } else {
+            return Promise.reject(new Error(response.statusText));
+          }
+        }).then(() => {
+          form.reset();
+          toast('Message sent successfully');
+        }).catch(error => {
+          toast(error, false);
+        });
+      } catch (e){
+        toast(e.message(), false);
+      }
     } else {
-      toast('Wrong input', 'red');
+      toast('Wrong input', false);
     }
   }
 
-  function validation(form) {
+  function validation(form_elements) {
     return (
-      validateEmail(form.elements['email'].value)
+      validateEmail(form_elements['email'].value)
     );
   }
 
-  function validateEmail(email) {
-    const re =
+  const email_re =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    return re.test(String(email).toLowerCase());
+
+  function validateEmail(email) {
+    return email_re.test(String(email).toLowerCase());
   }
 
-  function toast(text, color = '#333') {
-    const snackbar = document.getElementById('snackbar');
+  function setCssVar(name, value){
+    document.documentElement.style.setProperty(name, value)
+  }
+
+  function toast(text, success = true) {
+    if (success){
+      setCssVar("--snakebar-background-color", "#333")
+    } else {
+      setCssVar("--snakebar-background-color", "red")
+    }
     snackbar.className = 'show';
     snackbar.innerText = text;
-    snackbar.style.backgroundColor = color;
     setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 });
