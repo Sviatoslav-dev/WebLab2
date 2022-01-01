@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function validation(form_elements) {
+  function validation(formElements) {
     return (
-      validateEmail(form_elements['email'].value)
+      validateEmail(formElements['email'].value)
     );
   }
 
