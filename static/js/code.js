@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const formElements = form.elements;
       const entry = {};
 
-      for (const el in formElements) {
+      var fields = ['email', 'subject', 'message'];
+
+      for (const el of fields) {
         entry[el] = formElements[el].value;
       }
 
@@ -25,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
           'content-type': 'application/json',
         }),
       }).then(response => {
-        form.classList.remove('sending');
         if (response.status === 200) {
           return Promise.resolve(response);
         } else {
@@ -35,8 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
         toast('Message sent successfully');
       }).catch(error => {
-        form.classList.remove('sending');
         toast(error, false);
+      }).then(() => {
+        form.classList.remove('sending');
       });
     } else {
       toast('Wrong input', false);
