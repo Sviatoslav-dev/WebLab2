@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formElements = form.elements;
       const entry = {};
 
-      var fields = ['email', 'subject', 'message'];
+      const fields = ['email', 'subject', 'message'];
 
       for (const el of fields) {
         entry[el] = formElements[el].value;

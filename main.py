@@ -36,7 +36,7 @@ def contact():
     print(req)
     try:
         if sanitize_dict(req):
-            msg = Message("Subject", sender="slaviktkachuk11gmail.com", recipients=[req['email']])
+            msg = Message("Subject", sender=os.environ['MAIL_USERNAME'], recipients=[req['email']])
             msg.body = req['message']
             msg.subject = req['subject']
             mail.send(msg)
