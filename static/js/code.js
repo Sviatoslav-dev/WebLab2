@@ -9,14 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     if (validation(form.elements)) {
-      const formElements = form.elements;
-      const entry = {};
-
-      const fields = ['email', 'subject', 'message'];
-
-      for (const el of fields) {
-        entry[el] = formElements[el].value;
-      }
+      const entry = Object.fromEntries(Array.from(form.elements).map(el => [el.name, el.value]));
 
       form.classList.add('sending');
       fetch('/contact', {
@@ -63,13 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function toast(text, success = true) {
-    if (success) {
-      setCssVar('--snakebar-background-color', '#333');
-    } else {
-      setCssVar('--snakebar-background-color', 'red');
-    }
-    snackbar.className = 'show';
+    setCssVar('--snakebar-background-color', success ? '#333' : 'red');
+    snackbar.classList.add('show');
     snackbar.innerText = text;
-    setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
+    setTimeout(() => { snackbar.classList.remove('show'); }, 3000);
   }
 });
