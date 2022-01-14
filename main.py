@@ -32,8 +32,6 @@ def index():
 @limiter.limit("10 per minute")
 def contact():
     req = request.get_json()
-    print(req)
-    print(req)
     try:
         if sanitize_dict(req):
             msg = Message("Subject", sender=os.environ['MAIL_USERNAME'], recipients=[req['email']])
