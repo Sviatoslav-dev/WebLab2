@@ -1,0 +1,113 @@
+:root {
+  --body-background-color: #7bed9f;
+  --eclipse-color: rgb(51 51 51 / 80%);
+  --h1-text-color: #70a1ff;
+  --input-background-color: #eccc68;
+  --submit-button-background-color: #5352ed;
+  --shadow-color: rgb(0 0 0 / 30%);
+  --snakebar-background-color: #333;
+  --snackbar-color: #fff;
+  --snackbar-text: "";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 1.5em;
+  width: 100vw;
+  background-color: var(--body-background-color);
+}
+
+.form-contact {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.form-contact::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    var(--eclipse-color) url("../images/giphy.gif") center / 50px
+    no-repeat;
+  opacity: 0%;
+  visibility: hidden;
+  transition: all 0.5s ease 0s;
+}
+
+.form-contact.sending::after {
+  opacity: 100%;
+  visibility: visible;
+}
+
+.form-contains {
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
+}
+
+h1 {
+  font-size: 40pt;
+  width: 100%;
+  color: var(--h1-text-color);
+}
+
+.input {
+  width: 100%;
+  background-color: var(--input-background-color);
+}
+
+.submit-button {
+  position: absolute;
+  right: 0;
+  width: 40%;
+  height: 10%;
+  background-color: var(--submit-button-background-color);
+}
+
+.input,
+.submit-button {
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: var(--snakebar-background-color);
+  color: var(--snackbar-color);
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from { bottom: 0; opacity: 0%; }
+  to { bottom: 30px; opacity: 100%; }
+}
+
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 100%; }
+  to { bottom: 0; opacity: 0%; }
+}

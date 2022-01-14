@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <script src="{{ url_for('static', filename='js/code.js') }}"></script>
+  </head>
+  <body>
+    <form id="form" method="POST" class="form-contact">
+      <section class="form-contains">
+        <h1>Email sender</h1>
+        <p>
+          <input
+            class="input"
+            type="text"
+            placeholder="Send to"
+            name="email"
+            value=""
+            required
+          />
+        </p>
+        <p>
+          <input
+            class="input"
+            type="text"
+            placeholder="Subject"
+            name="subject"
+            value=""
+            required
+          />
+        </p>
+        <p>
+          <textarea
+            class="input"
+            name="message"
+            placeholder="Message"
+            rows="7"
+            cols="40"
+          ></textarea>
+        </p>
+        <p><input class="submit-button" type="submit" value="Send" /></p>
+        <div id="snackbar">Some text some message..</div>
+      </section>
+    </form>
+  </body>
+</html>
